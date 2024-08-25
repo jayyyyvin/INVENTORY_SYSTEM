@@ -41,9 +41,13 @@
                 <strong>Unit:</strong>
                 <select class="form-control" name="unit">
                 <option selected disabled>--select unit--</option>
-                <option>length</option>
-                <option>pcs</option>
-                <option>kls</option>
+                <option>Lenovo</option>
+                <option>Samsung</option>
+                <option>Apple</option>
+                <option>Acer</option>
+                <option>Dell</option>
+                <option>Asus</option>
+                <option>Hp</option>
                 </select>
             </div>
         </div>
@@ -71,8 +75,13 @@
                 </select>
                 {{-- <select class="form-control" name="supplier">
                 <option></option>
-                <option value="1">Ace Hardware</option>
-                <option value="2">Citi Hardware</option>
+                <option value="1">Apple Inc</option>
+                <option value="2">Lenove</option>
+                <option value="3">Acer</option>
+                <option value="4">Asus</option>
+                <option value="5">Dell</option>
+                <option value="6">Samsung</option>
+                <option value="7">Hp Inc</option>
                 </select> --}}
             </div>
         </div>

@@ -18,7 +18,7 @@
 
 
 
-<body id="page-top">
+<!-- <body id="page-top">
     <center>
       
             <div class="quotebackground">
@@ -27,7 +27,7 @@
             </div>
        
      
-        </center>
+        </center> -->
     
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -247,9 +247,14 @@ initial-value: 0turn;
  text-shadow: 2px 2px 2px black;
 }
 
-.inventorytitle.display-4.text-center{
+.inventorytitle.display-4.text-center {
     font-size: 1000%;
-    color: hsla(0, 100%, 1%, 0.4);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for better visibility */
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    display: inline-block; /* Ensure the box fits tightly around the text */
 }
 
 @media screen and (max-width:650px){

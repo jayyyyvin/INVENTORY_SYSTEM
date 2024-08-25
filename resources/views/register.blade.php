@@ -35,9 +35,11 @@
                             <label for="email" class="form-label">Role Name: </label>
                             {{-- <input type="text" name="role_id" class="form-control" id="role_id" placeholder="" required> --}}
                             <select name="role_name">
-                            <option>Supervisor</option>
-                            <option>Warehouseman</option>
                             <option>Admin</option>
+                            <option>Warehouse Manager</option>
+                            <option>Supplier</option>
+                            <option>Staff</option>
+                            <option></option>
                             {{-- @foreach($role as $rol)
                             <option value="{{$rol->id}}">{{$rol->role_name}}</option>
                             @endforeach --}}

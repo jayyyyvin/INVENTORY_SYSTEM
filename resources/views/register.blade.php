@@ -21,15 +21,15 @@
                         @csrf
                         <div class="mb-3">
                             <label for="profile_image" class="form-label">Profile Image:</label>
-                            <input id="profile_image" type="file" class="form-control" name="profile_image" accept="image/*" required>
+                            <input id="profile_image" type="file" value="{{old('profile_image')}}" class="form-control" name="profile_image" accept="image/*" required>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">User Name:</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="username" required>
+                            <input type="text" name="name" value="{{old('name')}}" class="form-control" id="name" placeholder="username" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address:</label>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="email" required>
+                            <input type="email" name="email" value="{{old('email')}}" class="form-control" id="email" placeholder="email" required>
                         </div>
                         <div class="mb-3"><br>
                             <label for="email" class="form-label">Role Name: </label>
@@ -48,7 +48,10 @@
                         </div>
                         <div class="mb-3"><br>
                             <label for="password" class="form-label">Password:</label>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="password" required>
+                            @error('password')
+                            <p style="color: red">{{$message}}</p>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <div class="d-grid">

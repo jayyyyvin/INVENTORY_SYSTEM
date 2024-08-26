@@ -17,7 +17,7 @@ class SupervisorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
      
-        if ($request->user()->role_name == 'Supervisor') {
+        if ($request->user()->role_name == 'Staff' || ($request->user()->role_name == 'Supplier')) {
             // Redirect or abort the request based on your logic
             // abort(403, 'Unauthorized');
 

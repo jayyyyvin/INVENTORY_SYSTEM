@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('product_condition');
             $table->string('other_details');
             $table->string('incode_by');
+            $table->dateTime('date_created')->nullable()->default(now()->format('y/m/d'));
             $table->timestamps();
             $table->foreign('product_name')->references('id')->on('products')->onDelete('cascade');
         });

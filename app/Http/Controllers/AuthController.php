@@ -17,10 +17,17 @@ class AuthController extends Controller
     public function index(): View
     {
         //
-        $user = User::latest()->paginate(5);
+
+        if(auth()->user()->role_name == 'Admin'){
+            $user = User::latest()->paginate(5);
         
         return view('userlist',compact('user'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
+        }else{
+            abort(403);
+        }
+       
+       
     }
 
     public function destroy(User $user): RedirectResponse
@@ -36,9 +43,14 @@ class AuthController extends Controller
 
     public function forgotpass()
     {
-        $user = User::all();
+        if(auth()->user()->role_name == 'Admin'){
+            $user = User::all();
    
-        return view('forgotpass',compact('user'));
+            return view('forgotpass',compact('user'));
+        }else{
+            abort(403);
+        }
+       
        
     }
 
@@ -62,7 +74,12 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        return view('register');
+        if(auth()->user()->role_name == 'Admin'){
+            return view('register');
+        }else{
+            abort(403);
+        }
+        
        
        
     }

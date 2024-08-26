@@ -6,6 +6,7 @@ use App\Models\Dashboard;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\Transaction;
+use DateTime;
 use Illuminate\Http\Request;
 
 
@@ -18,13 +19,20 @@ class DashboardController extends Controller
     {
         //
         
+
         $supplier = Supplier::count();
         $productcount = Product::count();
   
-        $countreceive = Transaction::where('created_at',now()->format('y/m/d'))
-                                    ->where('transaction_status','Receive') ->count();
-        // dd($countreceive);
-        $countrelease = Transaction::where('created_at',now()->format('y/m/d') )
+        $receive = Transaction::where('date_created',now()->format('y/m/d'))->get();
+
+        $options = [];
+        foreach($receive as $count){
+           $options[] =  Transaction::findorFail($count->id)->where('transaction_status')->get();
+          
+        }
+        $countreceive = count($options);
+        // $countreceive = 0;
+        $countrelease = Transaction::where('date_created',now()->format('y/m/d') )
                                     ->where('transaction_status','Release')->count();
 
         $products = Product::where('quantity', '<=', 50)

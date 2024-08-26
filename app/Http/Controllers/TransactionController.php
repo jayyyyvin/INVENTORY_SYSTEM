@@ -33,9 +33,15 @@ class TransactionController extends Controller
     public function create(): View
     {
         //
-        $product = Product::all();
+
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            abort(403);
+        }else{
+            $product = Product::all();
     
-        return view('transactions.create', compact('product'));
+            return view('transactions.create', compact('product'));
+        }
+
     }
 
     /**
@@ -71,6 +77,7 @@ class TransactionController extends Controller
 
 
         Transaction::create($request->all());
+        
 
         $transactions = Transaction::orderBy('created_at', 'desc')->get();
 
@@ -210,9 +217,14 @@ class TransactionController extends Controller
     public function reportalltransaction()
     {
 
-        $transactions = Transaction::latest()->paginate(10);
-        return view('transactions.reportalltransactions',compact('transactions'))
-                        ->with('i', (request()->input('page', 1) - 1) * 10);
+        if(auth()->user()->role_name == 'Staff'){
+            abort(403);
+        }else{
+            $transactions = Transaction::latest()->paginate(10);
+            return view('transactions.reportalltransactions',compact('transactions'))
+                            ->with('i', (request()->input('page', 1) - 1) * 10);
+        }
+       
     }
 
 

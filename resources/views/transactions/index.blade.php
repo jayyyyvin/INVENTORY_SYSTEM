@@ -23,7 +23,9 @@
                             </div>
                         </form>
                     </div>
-                        <div class="generatereport">
+                    @if(auth()->user()->role_name == 'Staff')
+                    @else
+                     <div class="generatereport">
                             <form action="reportalltransactions" method="get">
                                 <button class="btn btn-danger" type="submit">
                                 Generate Report
@@ -31,12 +33,18 @@
                             </form>
                         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
                     </div>
+                    @endif
+                       
                   
                 </div>
                     <div class="card-body">
+                        @if(auth()->user()->role_name == 'Staff')
+                        @else
                         <div class="pull-left">
                             <a class="btn btn-success" href="{{ route('transactions.create') }}"> + Create New Transactions</a>
                         </div>
+                        @endif
+                      
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -66,7 +74,11 @@
                 <th>Other_Details</th>   
                 <th>Incode_By</th>
                 <th>Date_Created</th>
+
+                @if(auth()->user()->role_name == 'Staff')
+                @else
                 <th>Action</th>
+                @endif
                 
             </tr>
             </thead>
@@ -94,14 +106,17 @@
             </td>
             <td>{{ $transaction->other_details }}</td>
             <td>{{ $transaction->incode_by }}</td>
-            <td>{{ $transaction->created_at->format('m/d/y') }}</td>
+            <td>{{ $transaction->created_at->format('F/d/Y') }}</td>
             <td>
                 {{-- <form action="{{ route('transactions.destroy',$transaction->id) }}" method="POST"> --}}
    
                     {{-- <a class="btn btn-sm btn-info" href="{{ route('products.show',$product->id) }}"><i class="fa-solid fa-eye"></i> show</a> --}}
     
                     {{-- <a class="btn btn-sm btn-warning " href="{{ route('transactions.edit',$transaction->id) }}" ><i class="fa-solid fa-pen-to-square"></i></a><br></br> --}}
+                    @if(auth()->user()->role_name == 'Staff')
+                    @else
                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal{{$transaction->id}}"><i class="fa-solid fa-trash-can"></i></button>
+                    @endif
                     {{-- @csrf
                     @method('DELETE')
       

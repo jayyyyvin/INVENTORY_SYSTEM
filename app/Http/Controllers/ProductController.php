@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\View\View;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -41,11 +42,19 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            Session::flash('unauthorized', 'You do not have permission to access this page.');
+
+            // Redirect back to the previous page
+            return redirect()->back();
+        }else{
+            $supplier = Supplier::all();
+            return view('products.create',compact('supplier'));
+        }
         // $supplier = Supplier::pluck('id','supplier');
-        $supplier = Supplier::all();
-        return view('products.create',compact('supplier'));
+      
     }
 
     /**
@@ -77,19 +86,34 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product): View
+    public function edit(Product $product)
     {
-        $supplier = Supplier::all();
-        return view('products.edit',compact('product','supplier'));
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            Session::flash('unauthorized', 'You do not have permission to access this page.');
+
+            // Redirect back to the previous page
+            return redirect()->back();
+        }else{
+            $supplier = Supplier::all();
+            return view('products.edit',compact('product','supplier'));
+        }
+       
     }
 
     public function reportall()
     {
 
-      
-        $products = Product::latest()->paginate(10);
-        return view('products.reportall',compact('products'))
-                        ->with('i', (request()->input('page', 1) - 1) * 10);
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            Session::flash('unauthorized', 'You do not have permission to access this page.');
+
+            // Redirect back to the previous page
+            return redirect()->back();
+        }else{
+            $products = Product::latest()->paginate(10);
+            return view('products.reportall',compact('products'))
+                            ->with('i', (request()->input('page', 1) - 1) * 10);
+        }
+    
     }
 
 
@@ -98,18 +122,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-        $request->validate([
-            'description' => 'required',
-            'unit' => 'required',
-            'quantity' => 'required',
-            'price' => 'required',
-            'supplier_id' => 'required'
-        ]);
-        
-        $product->update($request->all());
-        
-        return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            Session::flash('unauthorized', 'You do not have permission to access this page.');
+
+            // Redirect back to the previous page
+            return redirect()->back();
+        }else{
+            $request->validate([
+                'description' => 'required',
+                'unit' => 'required',
+                'quantity' => 'required',
+                'price' => 'required',
+                'supplier_id' => 'required'
+            ]);
+            
+            $product->update($request->all());
+            
+            return redirect()->route('products.index')
+                            ->with('success','Product updated successfully');
+        }
+
     }
 
     /**
@@ -117,6 +150,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
+        if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
+            Session::flash('unauthorized', 'You do not have permission to access this page.');
+
+            // Redirect back to the previous page
+            return redirect()->back();
+        }
         $product->delete();
          
         return redirect()->route('products.index')

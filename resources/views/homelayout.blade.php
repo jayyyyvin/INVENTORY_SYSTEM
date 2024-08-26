@@ -104,11 +104,15 @@
 
             <!-- Nav Item - Pages Collapse Users -->
             <li class="nav-item">
+                @if(auth()->user()->role_name == 'Staff')
+                @else
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Manage Users</span>
                 </a>
+                @endif
+              
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('register')}}"><i class="fa-solid fa-user-plus"></i> Add User</a>

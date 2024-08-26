@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/changepassword', [AuthController::class, 'changepass'])->name('changepassword');
     Route::post('/changepassword', [AuthController::class, 'changepassword'])->name('changepassword');
 
+    // Route::resource('/products', ProductController::class);
+    
     Route::resource('/products', ProductController::class);
     Route::get('/reportall',[ProductController::class,'reportall']);
     Route::get('search_data',[ ProductController::class, 'search_data']);
@@ -48,29 +50,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/transactions', TransactionController::class);
     Route::get('search_data_transaction',[ TransactionController::class, 'search_data_transaction']);
     Route::get('search_transaction',[ TransactionController::class, 'search_transaction']);
+
+    
+    Route::resource('/products', ProductController::class);
     
   
 });
 
 
 
-Route::middleware(['Supervisor', 'Warehouseman'])->group(function () {
+Route::middleware(['Admin', 'Warehouseman'])->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/forgotpass', [AuthController::class, 'forgotpass'])->name('forgotpass');
     Route::post('/forgotpass', [AuthController::class, 'newpassword'])->name('forgotpass');
     Route::get('/userlist', [AuthController::class, 'index'])->name('userlist');
     Route::delete('/userlist/{user}', [AuthController::class, 'destroy'])->name('userlist.destroy');
-});
 
-
-
-Route::group(['middleware' => 'Warehouseman'], function(){
     Route::get('search_data',[ ProductController::class, 'search_data']);
-    Route::resource('/products', ProductController::class);
+    // Route::resource('/products', ProductController::class);
     Route::resource('/suppliers', SupplierController::class);
- 
 });
+
+
 
 
 

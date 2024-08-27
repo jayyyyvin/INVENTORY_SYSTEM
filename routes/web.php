@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WearhouseController;
 use App\Models\Transaction;
 
 Route::get('/', function () {
@@ -53,6 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     
     Route::resource('/products', ProductController::class);
+    Route::resource('/wearhouse', WearhouseController::class);
+
     
   
 });

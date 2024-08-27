@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\WearhouseController;
 use App\Models\Transaction;
 
@@ -54,13 +55,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     
     Route::resource('/products', ProductController::class);
-    Route::resource('/wearhouse', WearhouseController::class);
+
 
     
   
 });
 
-
+Route::resource('warehouse', WarehouseController::class);
 
 Route::middleware(['Admin', 'Warehouseman'])->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');

@@ -79,7 +79,12 @@
             for(let i = 0; i < response.data.length; i++){
                 let row = '<tr>' +
                     '<td>' + response.data[i].id + '</td>' +
+                    '<td>' + response.data[i].id + '</td>' +
+                    '<td>' + response.data[i].id + '</td>' +
                     '<td>' + response.data[i].payment_method + '</td>' +
+
+                    '<td>' + response.data[i].total_amount + '</td>' +
+                    '<td>' + response.data[i].status + '</td>' +
                    '</tr>';
 
                    tbody.innerHTML += row;

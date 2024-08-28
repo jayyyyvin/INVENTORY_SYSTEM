@@ -62,14 +62,18 @@
             </tr>
             </thead>
             <tbody id="orderTableBody">
-      
+
+            </tbody>
+            </table>
+
+     
        <script>
         fetch('https://theeshop.online/api/orders', {
             method: 'GET',
         }).then(response => response.json())
         .then(response => {
             console.log(response.data);
-            let tbody = document.getElementById('tbody');
+            let tbody = document.getElementById('orderTableBody');
             tbody.innerHTML = '';
 
             for(let i = 0; i < response.data.length; i++){

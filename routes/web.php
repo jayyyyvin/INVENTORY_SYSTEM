@@ -9,7 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\WearhouseController;
+use App\Http\Controllers\orderController;
 use App\Models\Transaction;
 
 Route::get('/', function () {
@@ -76,7 +76,7 @@ Route::middleware(['Admin', 'Warehouseman'])->group(function () {
     Route::resource('/suppliers', SupplierController::class);
 });
 
+   
 
-
-
+ Route::get('/orders', [orderController::class, 'index']);
 

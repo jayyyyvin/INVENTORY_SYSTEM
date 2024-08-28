@@ -107,11 +107,20 @@
                     <i class="fa-solid fa-truck-field"></i>
                     <span>Suppliers</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/orders">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span>Orders</span></a>
+            </li>
+
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('warehouse.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>WareHouse</span></a>
             </li>
+
+
 
             <!-- Nav Item - Pages Collapse Users -->
             <li class="nav-item">

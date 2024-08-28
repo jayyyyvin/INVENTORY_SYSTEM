@@ -76,7 +76,7 @@
                 let row = '<tr>' +
                     '<td>' + response.data[i].id + '</td>' +
                     '<td>' + response.data[i].payment_method + '</td>' +
-                   ''</tr>';
+                   '</tr>';
 
                    tbody.innerHTML += row;
             }

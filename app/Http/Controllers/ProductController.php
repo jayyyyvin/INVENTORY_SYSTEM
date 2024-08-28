@@ -191,10 +191,11 @@ class ProductController extends Controller
     
     public function productAPI()
     {
-        $products = Product::all();
+        $products = Product::with('supplier')->all();
         if($products){
             return response()->json(['status' => 200,
             'data' => $products,
+            'supplier_name' => $product->supplier->supplier,
         ]);
         }else{
             return response()->json(['status' => 404,

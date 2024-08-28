@@ -18,7 +18,7 @@
 
 
 
-<!-- <body id="page-top">
+<body id="page-top">
     <center>
       
             <div class="quotebackground">
@@ -27,7 +27,7 @@
             </div>
        
      
-        </center> -->
+        </center>
     
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -64,10 +64,10 @@
                   </div>
                 </center>
         
-        <!-- <script>
+        <script>
       
 
-        const apiEndpoint = 'https://animechan.xyz/api/random';
+        const apiEndpoint = 'https://animechan.xyz/api/wrandom';
 
         window.addEventListener('load', axiosGet);
 
@@ -80,8 +80,8 @@
           }).catch(error => {
             const response = {
               data: {
-                quote: 'Uhh uhh uhh',
-                character: 'Dev0x13',
+                quote: 'Papasara mi sirrrrr T_T',
+                character: 'yourbelovedstudents',
               }
             };
             output(response);
@@ -98,7 +98,7 @@
         }
 
       
-    </script> -->
+    </script>
 
             </div>
 

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use App\Models\Supplier;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -188,6 +189,24 @@ class ProductController extends Controller
                     ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
+    public function productAPI()
+    {
+        $products = Product::get();
+        // dd($products);
+
+        if($products){
+            return response()->json(['status' => 200,
+            'data' => $products,
+            // 'supplier_name' => $products->supplier->supplier,
+            
+        ]);
+        }else{
+            return response()->json(['status' => 404,
+           'message' => 'not found',
+        ]);
+        }
+       
+    }
     
    
 

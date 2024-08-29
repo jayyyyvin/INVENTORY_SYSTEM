@@ -120,8 +120,7 @@
                     <span>WareHouse</span></a>
             </li>
 
-
-
+           
             <!-- Nav Item - Pages Collapse Users -->
             <li class="nav-item">
                 @if(auth()->user()->role_name == 'Staff')

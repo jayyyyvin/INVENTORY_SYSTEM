@@ -63,15 +63,22 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+
+        // dd($request->all());
+       $product = $request->validate([
             'description' => 'required',
             'unit' => 'required',
             'quantity' => 'required',
             'price' => 'required',  
             'supplier_id' => 'required'
         ]);
+
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('images', 'public');
+            $product['image'] = $image;
+        }
         
-        Product::create($request->all());
+        Product::create($product);
          
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -123,6 +130,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
+        // dd($request->all());
 
         if(auth()->user()->role_name == 'Staff' || auth()->user()->role_name == 'Supplier' ){
             Session::flash('unauthorized', 'You do not have permission to access this page.');
@@ -130,15 +138,20 @@ class ProductController extends Controller
             // Redirect back to the previous page
             return redirect()->back();
         }else{
-            $request->validate([
+            $prod = $request->validate([
                 'description' => 'required',
                 'unit' => 'required',
                 'quantity' => 'required',
-                'price' => 'required',
+                'price' => 'required',  
                 'supplier_id' => 'required'
             ]);
+    
+            if($request->hasFile('image')){
+                $image = $request->file('image')->store('images', 'public');
+                $prod['image'] = $image;
+            }
             
-            $product->update($request->all());
+            $product->update($prod);
             
             return redirect()->route('products.index')
                             ->with('success','Product updated successfully');

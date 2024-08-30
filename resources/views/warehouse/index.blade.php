@@ -57,6 +57,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Image</th>
                                                 <th>Description</th>
                                                 <th>Unit</th>
                                                 <th>Quantity</th>
@@ -69,6 +70,13 @@
                                                 @foreach ($products as $product)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
+                                                        <td>
+                                                            @if($product->image)
+                                                            <img style="height: 90px; width: 90px;" src='{{asset("storage/". $product->image)}}' alt="">
+                                                            @else
+                                                            <p>No Image</p>
+                                                            @endif
+                                                            </td>
                                                         <td>{{ $product->description }}</td>
                                                         <td>{{ $product->unit }}</td>
                                                         <td>

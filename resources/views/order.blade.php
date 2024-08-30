@@ -76,8 +76,8 @@
                 response.data.forEach(order => {
                     const row = `<tr>
                         <td>${order.id}</td>
-                        <td>${order.customer_name}</td>
-                        <td>${order.shipping_address}</td>
+                        <td>${order.product_id}</td>
+                        <td>${order.shipping_address_id}</td>
                         <td>${order.payment_method}</td>
                         <td>${order.total}</td>
                         <td>${order.status}</td>

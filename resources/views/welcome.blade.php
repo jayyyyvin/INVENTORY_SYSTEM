@@ -44,7 +44,7 @@
                 <div class="welcome_content">
                     <center>
                         <form action="{{ route('login') }}" method="get">
-                            <input type="submit" name="submit" class="btn_login" value="Click Here to Log-In">
+                            <input type="submit" name="submit" class="btn_login" value="⮞⮞⮞Click Here to Log-In⮜⮜⮜">
                         </form>
                         
                         <div class="container">

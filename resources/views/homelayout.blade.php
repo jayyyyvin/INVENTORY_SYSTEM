@@ -384,7 +384,7 @@
         if (performance.navigation.type === 1) {
           
             Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Page refreshed!",
             showConfirmButton: false,

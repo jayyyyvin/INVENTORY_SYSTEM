@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="newpassword" class="form-label">New Password:</label>
-                            <input type="password" name="newpassword" class="form-control" id="newpassword"  value="" placeholder="new password" required>
+                            <input type="password" name="newpassword" class="form-control" id="newpassword"  value="" placeholder="New password" required>
 
                         </div>
                         <div class="mb-3">
